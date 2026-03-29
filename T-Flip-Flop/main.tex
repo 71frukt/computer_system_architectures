@@ -1,0 +1,229 @@
+\input{preamble}
+\graphicspath{{img/}}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Домашнее задание по курсу \\ "Архитектуры вычислительных систем"}} \\[0.3cm]
+    {\large \textbf{T Flip-Flop} --- вариант 5} \\[1cm]
+    
+    \textbf{Шелонин Арсений} Б01-000 \\
+    \texttt{shelonin.ak@phystech.edu}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{Основные принципы}
+Для понимания принципов работы схемы \texttt{T Flip-Flop} стоит сначала последовательно разобраться в каждом её комплектующем. 
+
+\subsection{SR-Latch}
+
+Это минимальная единица хранения памяти с возможностью записи туда 1 бита данных. Единица на входе \texttt{set} устанавливает на выход \texttt{Q} бит 1, после чего значение на \texttt{set} не влияет на выход. Единица на входе \texttt{reset} (при \texttt{set} установленном в 0) сбрасывает значение на выходе до 0. (1, 1) на входах - запрещенное состояние
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{sr-latch.png}
+    \caption{SR-Latch}
+    \label{fig:sr-latch}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    % Первый рисунок
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{sr-latch1.png}
+        \caption{запись}
+        \label{fig:latch1}
+    \end{subfigure}
+    \hfill % Расталкивает картинки по краям (создает пробел между ними)
+    % Второй рисунок
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{sr-latch2.png}
+        \caption{сброс}
+        \label{fig:latch2}
+    \end{subfigure}
+    
+    \caption{}
+    \label{fig:latch1latch2}
+\end{figure}
+
+\newpage
+
+\subsection{D Latch}
+Эта схема решает проблему неоднозначности при подаче на \texttt{set} и \texttt{reset} единицы одновременно.
+\begin{itemize}
+    \item $\texttt{write enable} = 1 \implies \texttt{Q} = \texttt{data}$
+    \item $\texttt{write enable} = 1 \implies \texttt{Q} \text{ не зависит от } \texttt{data} \text{ (сохранилось в памяти)}$
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{d-latch.png}
+    \caption{D Latch}
+    \label{fig:d-latch}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    % Первый рисунок
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{d-latch1.png}
+        \caption{хранение}
+        \label{fig:dlatch1}
+    \end{subfigure}
+    \hfill % Расталкивает картинки по краям (создает пробел между ними)
+    % Второй рисунок
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{d-latch2.png}
+        \caption{запись}
+        \label{fig:dlatch2}
+    \end{subfigure}
+    
+    \caption{}
+    \label{fig:dlatch1dlatch2}
+\end{figure}
+
+\newpage
+
+\subsection{D Flip-Flop}
+
+В прошлой схеме для хранения данных с возможностью перезаписи была проблема: за время записи (то время, которое \texttt{we} = 1), значние на \texttt{data} должно быть постоянным. Чтобы от этого избавиться, продублируем \texttt{D Latch}, связав выход первого (master) с входом второго (slave). Теперь значение \texttt{data} фиксируется в строго определенный момент, по фронту тактового сигнала. При переключении \texttt{clk} с 0 на 1 выход мастера передается рабу и записывается в память. В остальное время значение на \texttt{data} никак не влияет на записанное в память значение.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{DFL.png}
+    \caption{D Flip-Flop}
+    \label{fig:DFL}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{DFL1.png}
+        \caption{Запись в master}
+        \label{fig:DFL1}
+    \end{subfigure}
+    \hfill % Расталкивает картинки по краям (создает пробел между ними)
+
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{DFL2.png}
+        \caption{передача из master в slave}
+        \label{fig:DFL2}
+    \end{subfigure}
+    \hfill
+
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{DFL3.png}
+        \caption{хранение}
+        \label{fig:DFL3}
+    \end{subfigure}
+    \hfill
+
+    \begin{subfigure}[b]{0.9\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{DFL4.png}
+        \caption{хранение}
+        \label{fig:DFL4}
+    \end{subfigure}
+    
+    \caption{D Flip-Flop: процесс записи бита информации}
+    \label{fig:latches_comparison}
+\end{figure}
+
+
+\subsection{T Flip-Flop}
+
+\textbf{T Flip-Flop} предназначен для инвертирования текущего состояния выхода $Q$ при поступлении активного фронта тактового сигнала \textbf{CLK}. В отличие от D-триггера, который просто копирует входные данные, T-триггер управляет самим фактом изменения состояния. При $\texttt{T} = 1$ в \texttt{D Flip-Flop} (который является непосредственной частью \texttt{T Flip-Flop}) значение с счетчика проходит в память с задержкой в 1 такт, при обнулении \texttt{T} значение на выходе сохраняется и остаётся неизменным.
+
+Одним из условий задания было использование только определенного набора элементов, и среди них нет \texttt{XOR}, который необходим для \textbf{T Flip-Flop}. Поэтому сконструируем его из 4 элементов \texttt{NAND}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{XOR.png}
+    \caption{XOR}
+    \label{fig:XOR}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL.png}
+    \caption{T  Flip-Flop}
+    \label{fig:TFL}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL1.png}
+    \label{fig:TFL1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL2.png}
+    \label{fig:TFL2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL3.png}
+    \label{fig:TFL3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL4.png}
+    \label{fig:TFL4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{TFL5.png}
+    \label{fig:TFL5}
+\end{figure}
+
+\section{Нахождение критического пути}
+Под нахождением критического пути я в контексте последовательностной схемы \texttt{T Flip-Flop} я понимаю определение в схеме максимального пути, который должен успеть пройти сигнал за время между тактами \texttt{CLK}. 
+
+В нашем случае под кандидаты на критический путь попадают пути от \texttt{T} до комбинационной логики \texttt{master}; от входа \texttt{master} до входа \texttt{slave}; и от \texttt{CLK} до \texttt{Q} и затем обратная связь от \texttt{Q} до входа \texttt{master}. Почти сразу становится очевидно что самым длинным среди них является третий:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{cr.png}
+    \caption{Критический путь: две части - от от \texttt{CLK} до \texttt{Q} и от \texttt{Q} до \texttt{master}}
+    \label{fig:cr}
+\end{figure}
+
+Длина пути будет рассчитываться исходя из данных условных задержек элементов:
+\begin{itemize}
+    \item $delay(\texttt{NOT} ) = 1 $
+    \item $delay(\texttt{NAND}) = 2 $
+    \item $delay(\texttt{NOR} ) = 2 $
+\end{itemize}
+
+\[T_{critical} = 2 + 1 + 2 + 2 + 2 + 2 + 2 + 1  = 14\]
+
+\section{Оценка числа транзисторов в схеме}
+
+На каждый элемент количество транзисторов оценивается так:
+
+\begin{itemize}
+    \item $\texttt{NOT}  : 2 - (1 P-\text{типа}, 1 N-\text{типа}) $
+    \item $\texttt{NAND} : 4 - (2 P-\text{типа}, 2 N-\text{типа}) $
+    \item $\texttt{NOR}  : 4 - (2 P-\text{типа}, 2 N-\text{типа}) $
+\end{itemize}
+
+Тогда всего транзисторов
+
+\[N = 8 * 4 + 8 * 4 + 7 * 2 = 62\]
+
+
+\end{document}
