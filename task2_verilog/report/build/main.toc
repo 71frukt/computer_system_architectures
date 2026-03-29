@@ -1,0 +1,8 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Функциональное описание}{2}{section.1}%
+\contentsline {section}{\numberline {2}Структурная схема}{2}{section.2}%
+\contentsline {section}{\numberline {3}Параметры}{2}{section.3}%
+\contentsline {section}{\numberline {4}Порты}{3}{section.4}%
+\contentsline {section}{\numberline {5}Тактирование и сброс}{3}{section.5}%
+\contentsline {section}{\numberline {6}Имплементация}{4}{section.6}%
+\contentsline {section}{\numberline {7}Тестирование}{4}{section.7}%
