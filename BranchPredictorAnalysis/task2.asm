@@ -20,8 +20,6 @@ magic_br_1:
     beq     a3, zero, magic_br_2 # branch #2
     addi    a3, a3, 0
 
-
-
 magic_br_2:
 
     addi    a1, a1, 1

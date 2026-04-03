@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+na}{.text}
+\PYG{n+nl}{main:}
+\PYG{+w}{    }\PYG{n+nf}{li}\PYG{+w}{      }\PYG{n+no}{t0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10000}
+\PYG{+w}{    }\PYG{n+nf}{li}\PYG{+w}{      }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{    }\PYG{n+nf}{li}\PYG{+w}{      }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
+\PYG{+w}{    }\PYG{n+nf}{li}\PYG{+w}{      }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
+
+\PYG{n+nl}{loop:}
+\PYG{+w}{    }\PYG{n+nf}{beq}\PYG{+w}{     }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{magic\PYGZus{}br\PYGZus{}1}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} branch \PYGZsh{}1, 1/NT \PYGZhy{}\PYGZgt{} 3/T}
+\PYG{+w}{    }\PYG{n+nf}{addi}\PYG{+w}{    }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
+
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+
+\PYG{n+nl}{magic\PYGZus{}br\PYGZus{}1:}
+\PYG{+w}{    }\PYG{n+nf}{beq}\PYG{+w}{     }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{magic\PYGZus{}br\PYGZus{}2}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} branch \PYGZsh{}2, 3/T \PYGZhy{}\PYGZgt{} 2/T}
+\PYG{+w}{    }\PYG{n+nf}{addi}\PYG{+w}{    }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}
+
+\PYG{n+nl}{magic\PYGZus{}br\PYGZus{}2:}
+
+\PYG{c+c1}{\PYGZsh{} ****** ADD HERE ******}
+\PYG{c+c1}{\PYGZsh{} your code for task 4}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{beq}\PYG{+w}{     }\PYG{n+no}{a3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{lol}\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} 2/T \PYGZhy{}\PYGZgt{} 0/NT}
+\PYG{n+nl}{lol:}
+
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{nop}
+\PYG{+w}{    }\PYG{n+nf}{beq}\PYG{+w}{     }\PYG{n+no}{a4}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{zero}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{kek}\PYG{+w}{         }\PYG{c+c1}{\PYGZsh{} 0/NT \PYGZhy{}\PYGZgt{} 1/NT}
+\PYG{n+nl}{kek:}
+\PYG{c+c1}{\PYGZsh{} **********************}
+
+\PYG{+w}{    }\PYG{n+nf}{addi}\PYG{+w}{    }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{    }\PYG{n+nf}{bne}\PYG{+w}{     }\PYG{n+no}{a1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{t0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{loop}\PYG{+w}{          }\PYG{c+c1}{\PYGZsh{} branch \PYGZsh{}3}
+
+\end{Verbatim}
