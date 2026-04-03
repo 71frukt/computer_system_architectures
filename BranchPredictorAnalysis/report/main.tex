@@ -24,7 +24,7 @@
 
 \subsubsection*{Исходный код на ассемблере (RISC-V)}
 
-\href{run:../bpu\_v1.asm}{bpu\_v1.asm}:
+\href{run:../bpu_v1.asm}{bpu\_v1.asm}:
 
 \begin{minted}{gas}
 .text
@@ -73,7 +73,7 @@ magic_br_2:
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.85\textwidth]{img/start_bht_a.png} 
-    \caption{Состояние таблицы в при встрече первого ветвления}
+    \caption{Состояние таблицы при встрече первого ветвления}
     \label{fig:start_bht_a}
 \end{figure}
 
@@ -115,7 +115,7 @@ magic_br_2:
 \end{figure}
 
 Тогда, чтобы снизить точность предсказания до $0\%$ нужно, чтобы бранчи попали в одну ячейку \texttt{BHT} и результат условий чередовался. Индекс в таблице рассчитывается как 
-$$\texttt{index} = (\texttt{address} >> 2) \texttt{mod} 8$$
+\[ \texttt{index} = (\texttt{address} \gg 2) \bmod 8 \]
 
 Адрес инструкций кодируются через 0x4, поэтому для того, чтобы не учитывать 2 не значимых нуля в битовом представлении, делаем логический сдвиг вправо на 2. 
 
@@ -173,7 +173,7 @@ $$\texttt{index} = (\texttt{address} >> 2) \texttt{mod} 8$$
 Точность переходов $\frac{2}{39998} = 0.00005 < 0.0001$ - условие выполнено.
 
 
-\href{run:../no\_predict2.asm}{no\_predict2.asm}:
+\href{run:../no_predict2.asm}{no\_predict2.asm}:
 
 \begin{minted}{gas}
 .text
