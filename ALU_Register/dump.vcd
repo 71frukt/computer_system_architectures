@@ -1,0 +1,125 @@
+$date
+	Mon Mar 16 00:24:29 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module alu_register_tb $end
+$var wire 1 ! valid_o $end
+$var wire 8 " result_o [7:0] $end
+$var reg 1 # clk_i $end
+$var reg 8 $ first_i [7:0] $end
+$var reg 2 % opcode_i [1:0] $end
+$var reg 1 & rst_i $end
+$var reg 8 ' second_i [7:0] $end
+$var reg 1 ( valid_i $end
+$scope module alu_inst $end
+$var wire 1 # clk_i $end
+$var wire 8 ) first_i [7:0] $end
+$var wire 2 * opcode_i [1:0] $end
+$var wire 1 & rst_i $end
+$var wire 8 + second_i [7:0] $end
+$var wire 1 ( valid_i $end
+$var reg 8 , alu_result [7:0] $end
+$var reg 8 - result_o [7:0] $end
+$var reg 1 ! valid_o $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx -
+b0 ,
+b0 +
+b0 *
+b0 )
+0(
+b0 '
+1&
+b0 %
+b0 $
+0#
+bx "
+x!
+$end
+#5000
+0!
+1#
+#6000
+b11001 ,
+b1111 '
+b1111 +
+b1010 $
+b1010 )
+1(
+0&
+#10000
+0#
+#15000
+b11001 "
+b11001 -
+1!
+1#
+#16000
+b0 ,
+b10111011 '
+b10111011 +
+b10101010 $
+b10101010 )
+b1 %
+b1 *
+#20000
+0#
+#25000
+b0 "
+b0 -
+1#
+#26000
+b1111000 ,
+b1111 '
+b1111 +
+b11 $
+b11 )
+b10 %
+b10 *
+#30000
+0#
+#35000
+b1111000 "
+b1111000 -
+1#
+#36000
+b0 ,
+b1010101 '
+b1010101 +
+b10101010 $
+b10101010 )
+b11 %
+b11 *
+#40000
+0#
+#45000
+b0 "
+b0 -
+1#
+#46000
+b11001000 ,
+b1100100 '
+b1100100 +
+b1100100 $
+b1100100 )
+b0 %
+b0 *
+0(
+#50000
+0#
+#55000
+0!
+1#
+#60000
+0#
+#65000
+1#
