@@ -1,0 +1,48 @@
+% !TEX root = main.tex
+
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{array} % Для вертикального выравнивания m{}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\onehalfspacing
+
+
+\geometry{top=2cm, bottom=2cm, left=1.2cm, right=1cm}
+% Определение цветов для классической светлой темы
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.95} % Почти белый фон без желтизны
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95} % Светло-серый цвет в формате RGB
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,     % Моноширинный шрифт
+    keywordstyle=\color{blue},      % Синие ключевые слова
+    commentstyle=\color{gray},      % Серые комментарии
+    stringstyle=\color{red},        % Красные строки
+    numbers=left,                   % Нумерация слева
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    breaklines=true,                % Перенос длинных строк
+    frame=none,                   % Рамка вокруг кода
+    backgroundcolor=\color{lightgray},
+    tabsize=4,
+    showstringspaces=false
+}
+
+\tcbuselibrary{skins}

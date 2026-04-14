@@ -1,0 +1,101 @@
+% !TEX root = main.tex
+
+\input{preamble}
+\graphicspath{{img/}}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Тестовое задание Сбера \\ Цифровая схематехника --- Определитель фронта}} \\[0.3cm]
+    
+    \textbf{Шелонин Арсений} Б01-411 \\
+    \texttt{shelonin.ak@phystech.edu}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{Задание}
+Требовалось реализовать и протестировать модуль определителя фронта сигнала, имеющий следующие порты:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|l|}
+        \hline
+        \textbf{Название} & \textbf{Ширина} & \textbf{Направление} & \multicolumn{1}{c|}{\textbf{Описание}} \\
+        \hline
+        \texttt{clk\_i} & 1 & input & Тактовый сигнал \\
+        \hline
+        \texttt{rst\_i} & 1 & input & Сигнал сброса \\
+        \hline
+        \texttt{signal\_i} & 1 & input & Целевой сигнал \\
+        \hline
+        \texttt{detect\_o} & 2 & output & Результирующий сигнал \\
+        \hline
+    \end{tabular}
+    \caption{Описание портов модуля}
+    \label{tab:module_ports}
+\end{table}
+
+Фактически модуль должен дискретизировать по времени изменение целевого сигнала \texttt{signal\_i}, так как в условиях асинхронного в непрерывном времени изменения сигнала для надежного детектировния его фронтов нужна привязка к тактовому сигналу.
+
+\newpage
+
+\section{Реализация}
+
+\paragraph{Реализованный модуль - \texttt{edge\_detector.v}} ~\\
+\begin{lstlisting}[language=Verilog]
+module edge_detector (
+    input  wire       clk_i,
+    input  wire       rst_i,
+    input  wire       signal_i,
+    output reg  [1:0] detect_o
+);
+
+    reg signal_prev;
+
+    always @(posedge clk_i)
+    begin
+        if (rst_i) 
+        begin
+            signal_prev <= 1'b0;
+            detect_o    <= 2'b00;
+        end
+        
+        else begin
+            signal_prev <= signal_i;
+
+            if (signal_i == 1'b1 && signal_prev == 1'b0)
+            begin
+                detect_o <= 2'b01;
+            end
+
+            else if (signal_i == 1'b0 && signal_prev == 1'b1)
+            begin
+                detect_o <= 2'b10;
+            end
+            
+            else begin
+                detect_o <= 2'b00;
+            end
+        end
+    end
+endmodule
+\end{lstlisting}
+
+\texttt{signal\_prev} - значение, присутствовавшее на \texttt{signal\_i} во время предыдущего фронта \texttt{clk\_i}. Аппаратно сохраняется в внутреннем D-триггере. Значение \texttt{rst\_i} имеет наивысший приоритет. 
+
+
+\section{Тестирование}
+Модуль тестирования описан в файле \texttt{edge\_detector\_tb.v}. Он проверяет модуль на базовых ситуациях, а также на ситуации когда значение сигнала меняется и возвращается в исходное значение в рамках одного периода тактового сигнала. В этом случае модуль не фиксирует положительный фронт и отрицательный фронт входного сигнала.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{tb.png} 
+    \caption{Тестирование модуля}
+    \label{fig:edge_detector_diagram}
+\end{figure}
+
+
+
+\end{document}
