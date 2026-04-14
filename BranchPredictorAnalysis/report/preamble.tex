@@ -1,0 +1,55 @@
+% !TEX root = main.tex
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{svg}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{array} 
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\onehalfspacing
+\geometry{top=2cm, bottom=2cm, left=1.2cm, right=1cm}
+
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.95}
+\definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+
+\setminted{
+    fontsize=\small,
+    linenos,
+    frame=none,
+    bgcolor=lightgray,
+    tabsize=4,
+    breaklines=true,
+    style=default
+}
+
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    breaklines=true,
+    frame=none,
+    backgroundcolor=\color{lightgray},
+    tabsize=4,
+    showstringspaces=false
+}
+
+\tcbuselibrary{skins}
